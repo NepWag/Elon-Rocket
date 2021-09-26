@@ -5,8 +5,16 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 1000f;
-    [SerializeField] float rotationThrust = 100f;
+    [SerializeField] float rotationThrust = 50f;
     Rigidbody rb;
+    public static Movement instance;
+
+    void Awake(){
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
@@ -60,4 +68,21 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false; //unfreezing rotation so the physics system can take over
     }
-}
+
+    void OnTriggerEnter(Collider collision)
+    {
+	if (collision.gameObject.tag == "Gem")
+	   {
+             PointManager.instance.AddPoint();
+		     Destroy(collision.gameObject);
+	   }
+       else if (collision.gameObject.tag == "Landing")
+	   {
+             Destroy(collision.gameObject);
+       }
+       else if (collision.gameObject.tag == "Sea")
+	   {
+
+       }
+    }
+} 
