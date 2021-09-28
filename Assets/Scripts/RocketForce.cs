@@ -7,9 +7,11 @@ public class RocketForce : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     // Start is called before the first frame update
     private bool IsRocketOn;
+    private bool IsSoundOn;
     void Start()
     {
         IsRocketOn = false;
+        IsSoundOn = false;
     }
 
     // Update is called once per frame
@@ -24,10 +26,16 @@ public class RocketForce : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
    public void OnPointerDown(PointerEventData eventData)  
    {
        IsRocketOn = true;
+       if(IsSoundOn == false)
+       {
+           AudioManager.instance.RocketSound();
+           IsSoundOn = true;
+       }
    }
 
    public void OnPointerUp(PointerEventData eventData)
    {
        IsRocketOn = false;
+       IsSoundOn = false;
    }
 }

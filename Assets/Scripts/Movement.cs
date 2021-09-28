@@ -8,12 +8,15 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationThrust = 50f;
     Rigidbody rb;
     public static Movement instance;
+    public AudioSource Scan;
 
-    void Awake(){
+    void Awake()
+    {
         if(instance == null)
         {
             instance = this;
         }
+        InvokeRepeating("RepositionRocket",3f,3f);
     }
 
     void Start()
@@ -71,8 +74,9 @@ public class Movement : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-	if (collision.gameObject.tag == "Gem")
+	   if (collision.gameObject.tag == "Gem")
 	   {
+             AudioManager.instance.CoinSound();
              PointManager.instance.AddPoint();
 		     Destroy(collision.gameObject);
 	   }
@@ -81,8 +85,35 @@ public class Movement : MonoBehaviour
              Destroy(collision.gameObject);
        }
        else if (collision.gameObject.tag == "Sea")
-	   {
-
+	   {  
+             AudioManager.instance.SplashSound();
+             GameManager.instance.GameOver();
        }
+       else if (collision.gameObject.tag == "Finish")
+       {
+             Scan.Play();
+             GameManager.instance.DisableButton();
+             CheckRocket();
+       }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+       if (collision.gameObject.tag == "Finish")
+	   {
+           FinishPlatform.instance.CancelInvokeCheckRocket();
+           FinishPlatform.instance.IsInsideBox = false;
+           GameManager.instance.GameOver();
+       }
+    }
+
+    void CheckRocket()
+    {
+        FinishPlatform.instance.CheckTheRocket();
+    }
+
+    void RepositionRocket()
+    {
+         this.transform.rotation = Quaternion.Euler(0f,0f,transform.eulerAngles.z);
     }
 } 
