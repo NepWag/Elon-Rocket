@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+/// <Summary>
+///  Left Control
+/// </Summary>
 public class LeftTurn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    
     private bool IsLeftOn;
     void Start()
     {

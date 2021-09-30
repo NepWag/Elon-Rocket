@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <Summary>
+///  Last Platform 
+/// </Summary>
 public class FinishPlatform : MonoBehaviour
 {
     public Transform Rocket;
@@ -25,19 +27,23 @@ public class FinishPlatform : MonoBehaviour
 
     public void CheckTheRocket()
     {
-        IsInsideBox = true;
-        StartCoroutine("passfunc");
+         IsInsideBox = true;
+         StartCoroutine("passfunc");
     }
 
-    public void PassLevel()
+    public void PassLevel()   // On level Complete
     {
         if(IsInsideBox == true)
         {  
             angleZ = Rocket.transform.localEulerAngles.z;
-            if(passValue <= 45f || passValue >= 315f)
+            if(angleZ <= 45f || angleZ >= 315f)
             {
                  CongratPlatfrom.SetActive(true);
                  victory.Play();
+            }
+            else
+            {
+                 GameManager.instance.GameOver();
             }
         }
         else

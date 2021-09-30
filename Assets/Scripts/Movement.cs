@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <Summary>
+///  Control the rocket player
+/// </Summary>
 public class Movement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 1000f;
@@ -9,6 +11,7 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
     public static Movement instance;
     public AudioSource Scan;
+    public GameObject SpotLight;
 
     void Awake()
     {
@@ -91,6 +94,7 @@ public class Movement : MonoBehaviour
        }
        else if (collision.gameObject.tag == "Finish")
        {
+             SpotLight.SetActive(true);
              Scan.Play();
              GameManager.instance.DisableButton();
              CheckRocket();

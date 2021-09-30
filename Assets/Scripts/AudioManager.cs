@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <Summary>
+///  Manage the Audio based On operation
+/// </Summary>
 public class AudioManager : MonoBehaviour
 {
     public AudioSource splash;
@@ -14,17 +16,17 @@ public class AudioManager : MonoBehaviour
         if(instance == null) 
              instance = this;
     }
-    public void SplashSound()
+    public void SplashSound()    // sound on sea drop
     {
          splash.Play();
     }
 
-    public void RocketSound()
+    public void RocketSound()     // sound on rocket fire button press
     {
          rocket.Play();
     }
 
-    public void CoinSound()
+    public void CoinSound()     // sound on coin touch
     {
          coin.Play();
     }

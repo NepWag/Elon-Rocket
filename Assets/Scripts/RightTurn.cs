@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+/// <Summary>
+/// Right Turn Control
+/// </Summary>
 public class RightTurn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    
     private bool IsRightOn;
     void Start()
     {

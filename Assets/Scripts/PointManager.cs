@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+/// <Summary>
+///  Score Counting based on coin touch
+/// </Summary>
 public class PointManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static PointManager  instance;
     private int Point;
     public TMP_Text PointUi;

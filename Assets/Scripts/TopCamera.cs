@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <Summary>
+///  MiniMap Camera
+/// </Summary>
 public class TopCamera : MonoBehaviour
 {
     public GameObject Rocket;

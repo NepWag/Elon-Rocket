@@ -2,7 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+/// <Summary>
+/// Pression bar loading bar at switching the level
+/// </Summary>
 public class ProgressSceneLoader : MonoBehaviour
 {
 	[SerializeField]
@@ -11,17 +13,15 @@ public class ProgressSceneLoader : MonoBehaviour
 	private Slider slider;
 	private AsyncOperation operation;
 	private Canvas canvas;
-
 	private void Awake()
 	{
 		canvas = GetComponentInChildren<Canvas>(true);
 	}
 
-	public void LoadScene(int sceneName)
+	public void LoadScene(int sceneName)    // Load the scene based on build index
 	{
 		UpdateProgressUI(0);
 		canvas.gameObject.SetActive(true);
-
 		StartCoroutine(BeginLoad(sceneName));
 	}
 
@@ -42,7 +42,7 @@ public class ProgressSceneLoader : MonoBehaviour
 		canvas.gameObject.SetActive(false);
 	}
 
-	private void UpdateProgressUI(float progress)
+	private void UpdateProgressUI(float progress)   // Update the value on Slider
 	{
 		slider.value = progress;
 		progressText.text = (int)(progress * 100f) + "%";
